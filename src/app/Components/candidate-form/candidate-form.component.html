@@ -1,0 +1,82 @@
+<form>
+    <div class="default-forms" >
+      <!-- <p>{{DefaultFormId}}</p><br> -->
+      <p class="default-form-name"><span>{{formName}}</span> <button mat-icon-button 
+          aria-label="Example icon-button with a menu">
+          
+        </button></p>
+      
+      <div *ngFor="let cat of categories;let i=index">
+        
+    
+        <div class="checkbox-category">
+         
+          <div style="width: 100%;">
+            <div class="category-styling">
+              <p class="default-catergory-name" id="catergory-name">{{cat.categoryName}}</p>
+              <button style="padding-right: 55px;" mat-icon-button 
+                aria-label="Example icon-button with a menu">
+                
+              </button>
+            </div>
+          </div>
+        </div>
+    
+       
+        <div class="default-question-container" *ngFor="let que of cat.questions;let p=index">
+    
+          
+          <div style="background-color: white;padding: 10px;width: 100%;">
+            
+            <div class="category-styling1">
+              <p class="default-question">{{p+1}}. {{que.question}}</p>
+              <button mat-icon-button aria-label="Example icon-button with a menu">
+                
+              </button>
+            </div>
+          
+            <div *ngIf="que.qtype==='Multiple Choice'">
+              <div class="default-form-options" *ngFor="let opt of que.options;let k=index">
+                <p class="edit-container">
+               
+                    <input type="radio" value="options"
+                    name={{que.questionId}}  />&nbsp;&nbsp;<span>{{opt.optionName}}</span></p>
+              </div>
+            </div>
+    
+            <div *ngIf="que.qtype==='Checkboxes'">
+              <div class="default-form-options" *ngFor="let opt of que.options;let k=index">
+                <p class="edit-container">
+                  
+                    <input
+                    type="checkbox" id="isCheckBox"   />&nbsp;&nbsp;<span>{{opt.optionName}}</span></p>
+              </div>
+            </div>
+    
+            <div *ngIf="que.qtype==='Short & Long Answer'">
+              <div class="default-form-options">
+                <p><input type="text"  placeholder="Answer" #textAnswer  style="width: 70%;" /><span></span></p>
+              </div>
+            </div>
+    
+            
+    
+          </div>
+    
+        </div>
+    
+        
+    
+      </div>
+      
+    </div>
+</form>
+
+<footer class="footerstyle" >
+  <div class="footer-division">
+  
+    <button class="btn-space btnfooter"  >Cancel</button>
+    <button class="btn-space btnfooter" >Save</button>
+  </div>
+  
+</footer>

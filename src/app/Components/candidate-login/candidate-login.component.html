@@ -1,0 +1,46 @@
+<nav class="navbar navbar-light" style="background-color:whitesmoke;">
+    <a class="navbar-brand" href="#">
+      <img src="/assets/Images/company_logo.png" width="250" height="50" alt="">
+    </a>
+  </nav>
+  
+  <body class="body">
+    
+  <form class="formcn" [formGroup]="LoginForm">
+    <span class="form-body">
+      <mat-card class="example-card">
+    <div>
+      <mat-form-field class="example-form-field" appearance="legacy">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" formControlName="emailId" >
+          
+        </mat-form-field> 
+      </div>
+      
+        <button mat-stroked-button class="otp-button" (click)="candidateVerification()">Send OTP</button><br/>
+      
+      <div *ngIf="hidedata">
+      
+        <mat-form-field class="example-form-field" appearance="legacy">
+            <mat-label>OTP</mat-label>
+            <input matInput type="text" formControlName="otp" >
+            
+          </mat-form-field> 
+        
+        
+          <button mat-stroked-button class="otp-button" (click)="verifyotp()" >Verify OTP</button><br/>
+        
+      </div>
+      <div *ngIf="hidesubmit">
+        <div>
+          <br/><button mat-stroked-button class="login-button" [disabled]="SubmitButton===false " (click)="submit()">Login</button>
+        </div>
+      </div>
+    </mat-card>
+    
+      
+    </span>  
+      </form>
+      <!-- <img alt="undrawhappyfeelingree76r14195" src="/assets/Images/background.svg" class="frame112-image4" /> -->
+    
+  </body>

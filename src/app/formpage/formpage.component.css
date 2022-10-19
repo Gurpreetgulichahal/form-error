@@ -1,0 +1,294 @@
+/* *{
+    box-sizing: border-box;
+  } */
+
+  .default-form-name{
+
+    font-weight: bold;
+  
+    background-color: white;
+  
+    text-align: left;
+  
+    border-radius: 5px;
+  
+    /* margin-left: 200px; */
+  
+    padding: 10px;
+  
+    padding-top: 15px;
+  
+    height: 80px;
+  
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 25px;
+  
+  
+  }
+  
+  
+  .default-forms{
+    /* text-align: center; */
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-right: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: -100px;
+    width: auto;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  
+  
+  .default-catergory-name{
+  
+    text-align: left;
+  
+    margin-left: 10px;
+  
+    font-weight: bold;
+  
+    margin-top: 10px;
+  
+  }
+  
+  
+  
+  .default-question-container{
+  
+    /* background-color: white; */
+  
+    padding: 10px;
+  
+  }
+  
+  
+  
+  .default-question{
+  
+    text-align: left;
+    box-sizing: border-box;
+  }
+  
+  
+  
+  .default-form-options{
+  
+    text-align: left;
+  
+    margin-left: 18px;
+  
+    /* margin-bottom: 10px; */
+  
+  }
+  .mat-icon-style{
+
+    text-align: right;
+  
+    padding-left: 20px;
+  
+  }
+  
+  /* for checkbox */
+  
+  
+  .category-styling{
+  
+    display: flex;
+  
+    justify-content: space-between;
+  
+  }
+  
+  
+  
+  .category-styling1{
+  
+    display: flex;
+  
+    justify-content: space-between;
+  
+  }
+  
+  ::ng-deep .cdk-overlay-container {
+    z-index: 10051;
+  }
+  
+  .hide{
+  
+  
+  
+    display: none;
+  
+  
+  
+    height: 20px;
+  
+  
+  
+    width: 20px;
+  
+  
+  
+    cursor: pointer;
+  
+    background-color: white;
+  
+    border: none;
+  
+  
+  
+  }  
+  
+  
+  
+  
+  
+  .edit-container:hover > .hide{
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+  }
+  
+  .default-question-container{
+  
+    /* background-color: white; */
+  
+    padding: 10px;
+  
+    display: flex;
+  
+    justify-content: flex-start;
+  
+    align-items: center;
+  }
+  
+  
+  
+  .checkbox-container{
+    margin-right: 15px;
+    margin-left: -10px;
+   
+  }
+  
+  
+  
+  .checkbox-container:checked {
+    background-color: #0E9700;
+    content: #0E9700;
+  }
+  
+  
+  
+  .checkbox-category{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    /* background-color: white; */
+  }
+  .footerstyle{
+    
+    width:100%;
+    height: 70px;
+    margin-top: 50px;
+    background: #FFFFFF;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;  }
+.btnfooter{
+   
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 22px;
+
+
+text-align: center;
+text-transform: capitalize;
+
+
+
+color: #51575E;
+width:120px;
+height: 40px;
+border: 1px solid #DADBDD;
+
+
+
+border-radius: 20px;
+}
+.btnfooter:hover{
+    background: #13C26B;
+    color: #FFFFFF;
+}
+.footer-division{
+   text-align: end;
+   margin-right: 100px;
+   
+}
+.btn-space {
+    margin-right: 30px;
+    
+    margin-top: 20px;
+    background: #FFFFFF;
+}
+.form-nav{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;height: 63px;
+background: #FFFFFF;
+}
+.size{
+  font-size: 40px;
+  font-weight: 100;
+  cursor: pointer;
+  padding-bottom: 0px;
+  margin-left: 10px;
+  opacity: 0.7;
+  
+}
+.nav-title{
+  font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 28px;
+/* identical to box height, or 140% */
+
+
+/* Grays/1F2730 (Gray 1) */
+
+color: #1F2730;
+
+height: 28px;
+}
+.nav-list{
+  margin-left: 60px;
+}
+.nav-item{
+  font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+
+color: #1F2730;
+}
+  
+
+ 
+@media screen and (min-width:700px){
+  .default-forms{
+    max-width: 700px;
+    margin: auto;
+    margin-top: 40px;
+  }
+}

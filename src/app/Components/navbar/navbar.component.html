@@ -1,0 +1,67 @@
+<!-- sudo npm install bootstrap-offcanvas        for offcanvas in navbar -->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="../dist/css/bootstrap.offcanvas.min.css"/> -->
+    <title></title>
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-container">
+        <div class="container-fluid">
+            <div class="navbar-header navbar-container">
+                <div class="navbar-links">
+                    <div class="navbar-brand text-white" id="navbarName">{{name}}</div>
+                    <!-- <div class="navbar-brand text-white">{{role}}</div> -->
+                    <!-- <a class="navbar-brand text-white role-container" href="#">Recruitment Id</a> -->
+                </div>
+                <div class="navbar-search">
+                    <div class="d-flex justify-content-end">
+                    <button class="navbar-toggler navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                        aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-1">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/newform">Candidate Forms</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/newform">Hiring Manager Forms</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/create-new-user">Assesment Forms</a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/newform">My forms</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="">Sign Out</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- End Example Code -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

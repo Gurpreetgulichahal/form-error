@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+
+    <nav class="navbar navbar-expand-lg form-nav">
+        <div class="container-fluid">
+          <i (click)="onBack()" class="fa fa-angle-left size"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="nav-title">{{FormName}}</span>
+          
+          <div class="collapse navbar-collapse nav-list" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" style="margin-top: 10px;" aria-current="page" (click)="saveResponse()" >Save</a>
+              </li>
+              <li class="nav-item">
+                <button style="margin-top: 10px;border: none;background-color: transparent;" mat-menu-item data-bs-toggle="offcanvas" data-bs-target="#demo">
+                  <mat-icon style="margin-top: -11px;">library_add</mat-icon>
+                  <span style="margin-top:-40px">Add Notes</span>
+                </button>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li> -->
+            </ul>
+           
+          </div>
+        </div>
+      </nav>
+
+<form [formGroup]="candidateForm" >
+  <div class="sending-email-head">
+    <div class="sending-email-styling">    
+    <div class="ats-data-container">
+      <label class="labelstyle">Candidate Name</label><br/>
+      <input  class="inputstyle" placeholder="Enter Name" name="candidateName" formControlName="candidateName"   />
+    </div>
+    <div class="ats-data-container">
+      <label class="labelstyle">Candidate Email</label><br>
+      <input class="inputstyle" placeholder="Enter Email" name="candidateEmail" formControlName="candidateEmail"   />
+    </div>
+    <div class="ats-data-container">
+      <label class="labelstyle" >Candidate Phone Number</label><br>
+      <input class="inputstyle" placeholder="Enter Phone Number" name="candidateNumber" formControlName="candidatePhoneNumber"  />
+    </div>
+
+    <div class="ats-data-container">
+      <label class="labelstyle">Screened By</label><br>
+      <input class="inputstyle" placeholder="Enter Name" name="screened" formControlName="screenedBy" />
+    </div>
+
+    <div class="ats-data-container">
+      <label class="labelstyle">Client</label><br>
+      <input class="inputstyle" placeholder="Enter Client" name="client" formControlName="client" />
+    </div>
+
+    <div class="ats-data-container">
+      <label class="labelstyle">Job Title</label><br>
+      <input class="inputstyle" placeholder="Enter Job Title" name="jobtitle" formControlName="jobTitle" />
+    </div>
+
+    <div class="ats-data-container">
+      <label class="labelstyle">Job ID</label><br>
+      <input class="inputstyle" placeholder="Enter Job Id" name="jobid" formControlName="jobId" />
+    </div>
+
+    
+    <button type="submit" [disabled]="!candidateForm.valid" class="save" (click)="createCandidate()" >Save</button>
+
+  </div>
+
+  
+
+  
+  </div>
+</form>
+
+<app-defaultform *ngIf="formVisible"></app-defaultform>
+
+<!-- {{candidateId.candidateId}} -->
+
+
+
+  
+
+  
+  
+
+  <footer class="footerstyle" >
+    <div class="footer-division">
+    
+      <button class="btn-space btnfooter" (click)="cancel()" >Cancel</button>
+      <button class="btn-space btnfooter" (click)="sendmethod()">Send To Candidate</button>
+    </div>
+    
+  </footer>
+</body>
+
+
+
+
+
+
+<div class="offcanvas offcanvas-end main-body" id="demo">
+
+  <div class="offcanvas-header offcanvas-styling">
+
+    <h4 class="offcanvas-title">Add Notes</h4>
+
+    <button style="margin-top: -30px;" type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+
+  </div>
+
+  <hr style="margin-top: -20px;">
+
+  <div class="offcanvas-body ">
+
+    <textarea class="textarea" id="w3review" name="w3review" rows="10" cols="50" placeholder="Add Notes" [(ngModel)]="addnotes.note"></textarea>
+
+    <div style="text-align: right;">
+
+      <button class="btn btn-success savebutton" type="button"  (click)="createAddNotes()">Save</button>
+
+    </div>
+    <div class="notebody">
+      <div  class="formnotes-container" *ngFor="let formNotesData of formNotes">
+      <div style="display: flex;justify-content: space-between;">
+        <div>
+        <span style="justify-content: start">{{formNotesData.noteCreationDate | date: 'dd/MM/yyyy'}}</span>
+        </div>
+        <div>
+        <span class="deletetext" (click)="deletefommnotedata(formNotesData.noteId)">delete</span>
+      </div>
+      </div>
+        <div class="notesdata-container"   >
+          <P class="notesdata">{{formNotesData.note}}</P>
+        </div>
+        
+      </div>
+  </div>
+   
+
+  </div>
+  
+
+</div>
+

@@ -1,0 +1,59 @@
+.example-form-field {
+    min-width: 350px;
+     font-size: 20px;
+     
+   }
+   .formcn{
+     padding: 10px;
+     padding-top: 30px;
+     /* text-align: right; */
+     /* margin-right: 50px; */
+   }
+   .body{
+     /* background-image: url("/assets/Images/background3.jpg"); */
+     
+     /* top: 30px; */
+     background: rgb(245, 255, 250);
+     height: 100vh;
+     
+   }
+   .example-card{
+     width: 400px;
+     background:whitesmoke;
+     left: 900px;
+     min-height: 200px;
+     border-color: transparent;
+     box-shadow: none;
+   }
+ 
+   /* .form-body{
+     margin-left: 200px;
+   } */
+ 
+   .frame112-image4 {
+     top: 41px;
+     left: 321px;
+     /* width: 331px; */
+     min-width: 200px;
+     height: 312px;
+     position: absolute;
+     object-fit: cover;
+     border-color: transparent;
+   }
+   .otp-button{
+     border-radius: 20px;
+     box-sizing: content-box;
+     height: 40px;
+     left: 274px;
+   }
+   .login-button{
+     left: 142px;
+     box-sizing: content-box;
+     border-radius: 20px;
+     height: 40px;
+     
+   }
+   .login-button:hover{
+     background: #13C26B;
+     color: #FFFFFF;
+   }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+  <i (click)="onBack()" class="fa fa-angle-left size"></i>
+  <!-- <div class="sending-email-head">
+    <div class="sending-email-styling">    
+    <div class="ats-data-container">
+      <label class="labelstyle">Candidate Name</label><br/>
+      <input class="inputstyle" placeholder="Enter Name" />
+    </div>
+    <div class="ats-data-container">
+      <label class="labelstyle">Candidate Email</label><br>
+      <input class="inputstyle" placeholder="Enter Email" />
+    </div>
+    <div class="ats-data-container">
+      <label class="labelstyle" >Candidate Phone Number</label><br>
+      <input class="inputstyle" placeholder="Enter Phone Number" />
+    </div>
+
+    <div class="ats-data-container">
+      <label class="labelstyle">Screened By</label><br>
+      <input class="inputstyle" placeholder="Enter Name" />
+    </div>
+
+    <div class="ats-data-container">
+      <label class="labelstyle">Client</label><br>
+      <input class="inputstyle" placeholder="Enter Client" />
+    </div>
+
+    <div class="ats-data-container">
+      <label class="labelstyle">Job Title</label><br>
+      <input class="inputstyle" placeholder="Enter Job Title" />
+    </div>
+
+    <div class="ats-data-container">
+      <label class="labelstyle">Job ID</label><br>
+      <input class="inputstyle" placeholder="Enter Job Id" />
+    </div>
+  </div>
+
+  
+  </div> -->
+
+  <div class="sending-email-body">
+    <div class="sending-email-body-styling">
+      <form [formGroup]="emailForm">
+      <div class="ats-data-body">
+        <label class="labelstyle">Send To</label><br>
+        <input class="inputstyle" style="width: 100%;" formControlName="emailId" placeholder="Email"   />
+      </div>
+
+      <div class="ats-data-body">
+        <label class="labelstyle">Subject</label><br>
+        <input  class="inputstyle"style="width: 100%; ;" formControlName="subject" placeholder="Subject" />
+      </div>
+
+      <div class="ats-data-body">
+        <label class="labelstyle">Body Copy</label><br>
+        <textarea  class="body-copy" style="width: 100%;" formControlName="body" id="w3review" name="w3review" rows="10" cols="50">
+        </textarea>
+      </div>
+    </form>
+    </div>
+  </div>
+  
+
+  <footer class="footerstyle" >
+    <div class="footer-division">
+    
+      <button class="btn-space btnfooter" (click)="cancel()" >Cancel</button>
+      <button class="btn-space btnfooter" (click)="sendLinkToEmail()" >Send</button>
+    </div>
+    
+    
+  </footer>
+</body>
+
+
+
+
+
+
+
+

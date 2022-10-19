@@ -1,0 +1,56 @@
+.navbar-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: teal;
+    font-style: italic;
+    width: 100%;
+    /* border: 2px solid black; */
+}
+.role-container{
+    font-style: italic;
+    border: 2px solid black;
+    margin-left: 50px;
+    padding-left: 50px;
+}
+
+.search-container{
+    /* border: 2px solid black; */
+    display: flex;
+    justify-content: flex-end;
+    /* width: 100%; */
+    /* padding-left: 500px; */
+    /* padding-bottom: 10px; */
+}
+.navbar-header{
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar-search{
+    display: flex;
+    justify-content: flex-end;
+    width: 2%;
+    /* align-items: flex-end; */
+
+}
+.navbar-links{
+    display: flex;
+    /* justify-content: flex-start; */
+    justify-content: flex-end;
+    /* text-align: left; */
+    /* border: 2px solid black; */
+    width: 96%;
+    /* align-items: flex-start; */
+}
+
+@media screen and (max-width:640px){
+    .navbar-container{
+        width: 75%;
+      }
+}
+
+.navbar-styling{
+    display: flex;
+    justify-content: flex-end;
+}

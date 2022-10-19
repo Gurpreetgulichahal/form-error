@@ -1,0 +1,96 @@
+<nav class="navbar navbar-light" style="background-color:whitesmoke;">
+  <a class="navbar-brand" href="#">
+    <img src="assets/Images/company_logo.png" width="250" height="50" alt="">
+  </a>
+</nav>
+
+<body class="body">
+
+  <form [formGroup]="LoginForm" *ngIf="mainForm">
+    <span class="frame112-text07">Sign In</span>
+    <span class="frame112-text08">
+      <div class="example-container">
+        <mat-form-field style="width: 300px;">
+          <mat-label style="font-size: 17px;">Email</mat-label>
+          <input autocomplete="on" matInput formControlName="emailId"
+            oninput="this.value = this.value.toLowerCase()">
+          <!-- <button matSuffix mat-icon-button aria-label="Clear" (click)="clearEmailId()">
+            <mat-icon>close</mat-icon>
+          </button> -->
+        </mat-form-field>
+        <div class="text-danger" style="font-size: 17px;"
+          *ngIf="LoginForm.get('emailId')?.hasError('required') && LoginForm.get('emailId')?.touched">Email is required
+        </div>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field style="width: 300px;">
+          <mat-label style="font-size: 17px;">Password</mat-label>
+          <input style="font-size: 17px;" formControlName="password" matInput [type]="hide ? 'password' : 'text'" ngPreventCutCopyPaste>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="text-danger" style="font-size: 17px;"
+          *ngIf="LoginForm.get('password')?.hasError('required') && LoginForm.get('password')?.touched">Password is
+          required</div>
+      </div>
+
+
+      <!-- <CODE FOR CAPTCHA> -->
+      <ngx-captcha class="captcha" [config]="captchaConfig"></ngx-captcha>
+      <!-- </CODE FOR CAPTCHA> -->
+      <div style="margin: 10px;">
+        <button style="margin-left:100px;" mat-raised-button color="primary"
+          [disabled]="SubmitButton===false  || !LoginForm.valid" (click)="Login()">Login</button>
+      </div>
+      <br>
+      <a class="forgetpassword" (click)="fadeout()" href="#forgot-pw">ForgotPassword?</a>
+
+    </span>
+
+
+
+  </form>
+  <div id="forgot-pw">
+    <form action="" class="form" method="post" #myform="ngForm" >
+      <a href="#" (click)="display()" class="close" id="close123">&times;</a>
+      <h2>Reset Password</h2>
+      <div class="input-group" >
+        <input type="email" name="emailId" autocomplete="off" id="emailId" required [(ngModel)]="changePassword.emailId">
+        <label for="emailId">Email</label>
+      </div>
+      <div class="input-group" *ngIf="otp">
+        <input type="number" name="sentotp" id="OTP" required [(ngModel)]="changePassword.sentotp">
+        <label for="OTP">OTP</label>
+      </div>
+      <div class="input-group" *ngIf="newPassword">
+        <input type="password" name="setNewPassword" id="password" required [(ngModel)]="changePassword.setNewPassword">
+        <label for="password">New Password</label>
+      </div>
+      <input type="submit" value="Submit" *ngIf="emailButton" (click)="sendOTPToEmail()" class="submit-btn">
+      <input type="submit" value="Submit" *ngIf="otpButton" (click)="verifyOTP()" class="submit-btn">
+      <input type="submit" value="Submit"   *ngIf="passwordButton" (click)="updatePassword();myform.reset()" class="submit-btn">
+
+    </form>
+  </div>
+  <!--Image Design-->
+  <!-- <img alt="Rectangle315"
+    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMzAxJyBoZWlnaHQ9JzI5Nicgdmlld0JveD0nMCAwIDMwMSAyOTYnIGZpbGw9J25vbmUnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+CjxwYXRoIGQ9J00wIDBIMzAxVjI4NkMzMDEgMjkxLjUyMyAyOTYuNTIzIDI5NiAyOTEgMjk2SDEwQzQuNDc3MTYgMjk2IDAgMjkxLjUyMyAwIDI4NlYwWicgZmlsbD0ndXJsKCNwYWludDBfbGluZWFyXzFfNSknLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0ncGFpbnQwX2xpbmVhcl8xXzUnIHgxPScxNTAuNScgeTE9JzAnIHgyPScxNTAuNScgeTI9JzI5NicgZ3JhZGllbnRVbml0cz0ndXNlclNwYWNlT25Vc2UnPgo8c3RvcCBzdG9wLWNvbG9yPScjMjU0OUNBJy8+CjxzdG9wIG9mZnNldD0nMC45OTk5JyBzdG9wLWNvbG9yPScjMTVFNUYyJy8+CjxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nI0M0QzRDNCcgc3RvcC1vcGFjaXR5PScwJy8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+Cg=="
+    class="frame112-image2" /> -->
+
+  <!--first circle-->
+  <!-- <img alt="Ellipse2222"
+    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjU5JyBoZWlnaHQ9JzI1OScgdmlld0JveD0nMCAwIDI1OSAyNTknIGZpbGw9J25vbmUnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+CjxjaXJjbGUgY3g9JzEyOS41JyBjeT0nMTI5LjUnIHI9JzEyOS41JyBmaWxsPScjNjhGMkZCJyBmaWxsLW9wYWNpdHk9JzAuMjUnLz4KPC9zdmc+Cg=="
+    class="frame112-svg1" /> -->
+  <!--2nd circle-->
+  <!-- <img alt="Ellipse3223"
+    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTcyJyBoZWlnaHQ9JzE4NCcgdmlld0JveD0nMCAwIDE3MiAxODQnIGZpbGw9J25vbmUnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+CjxlbGxpcHNlIGN4PSc4NicgY3k9JzkyJyByeD0nODYnIHJ5PSc5MicgZmlsbD0nIzMwRTRFRicvPgo8L3N2Zz4K"
+    class="frame112-svg2" /> -->
+  <!--inner circle-->
+  <img alt="undrawhappyfeelingree76r14195" src="assets/Images/background.svg" class="frame112-image4" *ngIf="mainForm" />
+  <!--image-->
+
+</body>

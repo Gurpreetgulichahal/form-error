@@ -1,0 +1,164 @@
+.sending-email-head{
+
+    /* position: absolute; */
+width: 812px;
+min-height: 301px;
+padding: 20px;
+
+margin-top: 50px;
+margin-left: 300px;
+/* left: 211px;
+top: 161px; */
+
+background:#dfdddd;
+
+    /* display: flex;
+    
+    
+    /* min-height: 200px;
+    width: 720px; */
+    /* position: absolute;
+width: 782px;
+height: 301px;
+left: 211px;
+top: 161px;
+
+background:whitesmoke;
+    flex-wrap: wrap; */ 
+}
+
+.ats-data-container{
+    margin: 10px;
+    
+}
+
+.sending-email-styling{
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sending-email-body{
+    display: flex;
+    background-color:#dfdddd;
+    padding: 10px;
+    margin: auto;
+    margin-top: 20px;
+    width: 812px;
+    min-height: 200px;
+    margin-left: 300px;
+}
+
+.ats-data-body{
+    padding: 10px;
+}
+
+.sending-email-body-styling{
+    background-color: white;
+    padding: 10px;
+    width: 100%;
+    margin: 10px;
+}
+
+.labelstyle{
+    line-height: 38px;
+    font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+text-transform: capitalize;
+
+/* Gray/gray-9 (1F2730) */
+
+color: #1F2730;
+}
+     
+.inputstyle{
+width: 222px;
+padding: 1px 8px;
+border: 1px solid #DADBDD;
+border-radius: 2px;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 22px;
+color: #1F2730;
+height:32px;
+
+}
+
+.body-copy{
+    padding: 1px 8px;
+border: 1px solid #DADBDD;
+border-radius: 2px;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 22px;
+color: #1F2730;
+
+}
+
+::placeholder{
+    color: #83878C;
+    
+}
+.footerstyle{
+    
+    width:100%;
+    height: 70px;
+    margin-top: 50px;
+    background: #FFFFFF;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;  }
+.btnfooter{
+   
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 22px;
+
+
+text-align: center;
+text-transform: capitalize;
+
+
+
+color: #51575E;
+width: 100px;
+height: 40px;
+border: 1px solid #DADBDD;
+
+
+
+border-radius: 20px;
+}
+.btnfooter:hover{
+    background: #13C26B;
+    color: #FFFFFF;
+}
+.footer-division{
+   text-align: end;
+   margin-right: 100px;
+   
+}
+.btn-space {
+    margin-right: 30px;
+    
+    margin-top: 20px;
+    background: #FFFFFF;
+}
+.size{
+    font-size: 40px;
+    font-weight: 100;
+    cursor: pointer;
+    
+    margin-left: 50px;
+    padding-top: 30px;
+    opacity: 0.7;
+    
+    
+  }

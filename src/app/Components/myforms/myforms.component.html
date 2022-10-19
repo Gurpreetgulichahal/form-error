@@ -1,0 +1,530 @@
+<head>
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> -->
+</head>
+
+
+<div class="screen-split left">
+  
+ <div class="sidenav-header">
+  <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+      <div class="logo-container">
+          <button class="logo" (click)="toggleCollapse()">iR</button>
+          <div class="logo-text" @fadeInOut *ngIf="collapsed">iRecruit</div>
+          <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
+              <i class="fal fa-times close-icon"></i>
+          </button>
+      </div>
+      <ul class="sidenav-nav">
+          <div *ngIf="loginResponse.role == 'Admin' ">
+              <li class="sidenav-nav-item" *ngFor="let data of navbarDataAdmin">
+                  <ng-container>
+                      <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" routerLinkActive="active">
+                          <img [src]="data.srce">
+                          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+                              {{ data.label }}
+                          </span>
+                      </a>
+                  </ng-container>
+              </li>
+          </div>
+
+          <div *ngIf="loginResponse.role == 'User' ">
+          <li class="sidenav-nav-item" *ngFor="let data of navDataUser"> 
+              <ng-container>
+                  <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" routerLinkActive="active">
+                      <img [src]="data.srce">
+                      <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+                          {{ data.label }}
+                      </span>
+                  </a>
+              </ng-container> 
+          </li>
+        </div>
+      </ul>
+  </div>
+</div>
+</div>
+
+<div class="empty_box right body-right" id="rightSplitBar" [ngClass]="getBodyClass()">
+  <app-navbar></app-navbar>
+  <div class="main">
+    <h1 class="main-heading">MyForms Gallery</h1>
+    <div class="default-button d-flex">
+      <div class="search">
+        <mat-form-field class="form-field" appearance="legacy">
+          <mat-label>Search</mat-label>
+          <input matInput type="text" [(ngModel)]="dfName" (ngModelChange)="search()" placeholder="Search by Form Name"
+            autocomplete="off">
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="CleardfName()" *ngIf="dfName">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      <!-- <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-secondary" mat-button>Create Default
+          Form</button> -->
+    </div>
+  </div>
+  <div class="form-container">
+    <div class="container" id="openGallery">
+      <div *ngFor="let form of forms" class="main-container">
+        <div class="card">
+          <div class="card-image">
+            <img class="card-img-top image" src="assets/Images/card5.png" alt="Card image cap">
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{form.dfName}}
+              <span>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- menu code -->
+        <mat-menu #menu="matMenu">
+          <button type="button" (click)="openForm(form)" id="openForm" mat-menu-item>
+            <mat-icon>login</mat-icon>
+            <span>Open</span>
+          </button>
+          <!-- <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button> -->
+          <button (click)="openDelete(contentDelete, form)" mat-menu-item>
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
+            </button>
+        </mat-menu>
+
+      </div>
+    </div>
+  </div>
+  <!-- <div class="response">
+    <div class="row">
+      <div class="third-container">
+        <div class="nav-items">
+          <a class="nav-links" (click)="MyFormsBar()" id="">MyForms</a>&nbsp;
+          <a class="nav-links" (click)="responseBar()">Responses</a>&nbsp;
+          <a class="nav-links" (click)="sentBar()">Sent</a>&nbsp;
+        </div>
+        <div class="searchbar">
+          <input type="search" style="border-radius: 20px;width:250px;height:30px;" placeholder="Search Forms" />
+        </div>
+      </div>
+    </div>
+    <hr>
+    <table class="table">
+      <thead>
+        <tr *ngIf="myForms" style="background-color: whitesmoke;">
+          <th>Form Name</th>
+          <th>Shared</th>
+          <th>Created By</th>
+          <th>Updated On</th>
+        </tr>
+        <tr *ngIf="responses" style="background-color: whitesmoke;">
+          <th>Form Name</th>
+          <th>Candidate Name</th>
+          <th>Date</th>
+        </tr>
+        <tr *ngIf="sent" style="background-color: whitesmoke;">
+          <th>Client Name</th>
+          <th>Job Title</th>
+          <th>Job Id</th>
+          <th>Form Types</th>
+        </tr>
+      </thead>
+    </table>
+  </div> -->
+
+</div>
+<!-- create default form Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 20px;">Create Default Form</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" name="formName" [(ngModel)]="data.dfName" placeholder="Form Name"
+          style="width: 70%;" /><br><br>
+        <select style="width: 70%;" [(ngModel)]="data.dfSection">
+          <option>Candidate Forms</option>
+          <option>Assessment Forms</option>
+          <option>Hiring Manager Forms</option>
+
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="close123" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="createForm()">Create</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- delete form modal -->
+<ng-template #contentDelete let-modal>
+  <div>
+   
+  </div>
+
+  <div>
+    <div style="display: flex;">
+      <h2 style="margin-left:200px;margin-top:20px;">Are you sure you want to delete this Form?</h2><button
+        type="button" hidden class="btn-close" id="close123" data-bs-dismiss="modal" aria-label="Close"
+        (click)="modal.close()"></button>
+    </div>
+    <div style="margin-left:300px;margin-bottom: 30px;">
+      <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()" style="margin-right: 30px;">Yes</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">No</button>
+
+    </div>
+  </div>
+
+</ng-template>
+
+<!-- delete form end  -->
+<!-- forms open code --><br><br><br><br><br><br><br><br><br><br><br><br>
+<!-- <div class="default-forms">
+  <p class="default-form-name"><span>{{DefaultFormName}}</span> <button mat-icon-button [matMenuTriggerFor]="menu1"
+      aria-label="Example icon-button with a menu">
+      <mat-icon>more_horiz</mat-icon>
+    </button></p>
+  <mat-menu #menu1="matMenu">
+    <button data-bs-toggle="modal" data-bs-target="#sectionModal" mat-menu-item>
+      <mat-icon>add</mat-icon>
+      <span>Add Category</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>edit</mat-icon>
+      <span>Rename</span>
+    </button>
+  </mat-menu>
+  <div *ngFor="let cat of Categories;let i=index">
+    
+
+    <div class="checkbox-category">
+      <div>
+        <input style="background-color: green;padding: 10px;" type="checkbox" id="form" name="form" value="Bike">
+        <label for="form"></label><br>
+      </div>
+      <div style="width: 100%;">
+        <div class="category-styling">
+          <p class="default-catergory-name" id="catergory-name">{{cat.categoryName}}</p>
+          <button style="padding-right: 55px;" mat-icon-button [matMenuTriggerFor]="menu1"
+            aria-label="Example icon-button with a menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <mat-menu #menu1="matMenu">
+      <button (click)="addQuestions(cat.categoryId)" data-bs-toggle="modal" data-bs-target="#sectionModal3"
+        mat-menu-item>
+        <mat-icon>add</mat-icon>
+        <span>Add Question</span>
+      </button>
+      <button (click)="editCategory(cat.categoryId)" data-bs-toggle="modal" data-bs-target="#editCategory"
+        mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit Category</span>
+      </button>
+      <button mat-menu-item (click)="deleteCategory(cat.categoryId)" data-bs-toggle="modal"
+        data-bs-target="#deleteCategory">
+        <mat-icon>delete</mat-icon>
+        <span>Delete Category</span>
+      </button>
+    </mat-menu>
+    <div class="default-question-container" *ngFor="let que of cat.questions;let p=index">
+
+      <div class="checkbox-container">
+        <input style="background-color: green;" type="checkbox" id="form" name="form" value="Bike">
+        <label for="form"></label><br>
+      </div>
+      <div style="background-color: white;padding: 10px;width: 100%;">
+       
+        <div class="category-styling1">
+          <p class="default-question">{{p+1}}. {{que.question}}</p>
+          <button mat-icon-button [matMenuTriggerFor]="menu2" aria-label="Example icon-button with a menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+        </div>
+        <mat-menu #menu2="matMenu">
+          <button data-bs-toggle="modal" data-bs-target="#addOptions" (click)="updateQuestion(que.questionId)"
+            mat-menu-item>
+            <mat-icon>add</mat-icon>
+            <span>Add Options</span>
+          </button>
+          <button data-bs-toggle="modal" data-bs-target="#updateModal" (click)="updateQuestion(que.questionId)"
+            mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Edit Question</span>
+          </button>
+          <button mat-menu-item data-bs-toggle="modal" data-bs-target="#deleteQuestion"
+            (click)="deleteQuestion(que.questionId)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete Question</span>
+          </button>
+        </mat-menu>
+        <div *ngIf="que.qtype==='Multiple Choice'">
+          <div class="default-form-options" *ngFor="let opt of que.options;let k=index">
+            <p class="edit-container"><button class="hide" (click)="updateOptions(opt.optionId)" data-bs-toggle="modal"
+                data-bs-target="#editOptions"><i class="fa fa-pen "></i></button><input type="radio" value="options"
+                name="options" />&nbsp;&nbsp;<span>{{opt.optionName}}</span></p>
+          </div>
+        </div>
+
+        <div *ngIf="que.qtype==='Checkboxes'">
+          <div class="default-form-options" *ngFor="let opt of que.options;let k=index">
+            <p class="edit-container"><button class="hide" (click)="updateOptions(opt.optionId)" data-bs-toggle="modal"
+                data-bs-target="#editOptions"><i class="fa fa-pen "></i></button><input
+                type="checkbox" />&nbsp;&nbsp;<span>{{opt.optionName}}</span></p>
+          </div>
+        </div>
+
+        <div *ngIf="que.qtype==='Short & Long Answer'">
+          <div class="default-form-options">
+            <p><input type="text" placeholder="Answer" style="width: 70%;" /><span></span></p>
+          </div>
+        </div>
+
+       
+      </div>
+
+    </div>
+
+  
+
+  </div>
+  
+</div> -->
+
+
+
+
+
+
+<!-- modal -->
+
+<!-- <div class="formsPage"> -->
+
+  <!-- Add section Modal -->
+  <!-- <div class="modal fade" id="sectionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Section</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" style="width: 70%;" placeholder="Section Name " name="Section Name"
+            [(ngModel)]="section.categoryName" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close1">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addSection()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- Add section Modal end-->
+
+  <!-- add questions modal -->
+  <!-- <div class="modal fade" id="sectionModal3" tabindex="-1" aria-labelledby="exampleModalLabel" style="z-index:3000;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Questions</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="min-height: 100px;">
+          <input type="text" style="width: 70%;" placeholder="Enter Your Question " name="Question"
+            [(ngModel)]="addQuestion.question" /><br><br>
+          <mat-form-field>
+            <mat-label>Question Type</mat-label>
+            <mat-select (selectionChange)="onChange($event)">
+              <mat-option *ngFor="let qTypes of questiontype" (click)="questionType(qTypes.typeId)" [value]="qTypes">
+                {{qTypes.typeName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="addQuestions">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addQuestions2()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- add questions modal end-->
+
+  <!-- edit question Modal -->
+  <!-- <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Question </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" placeholder="Enter your Question" [(ngModel)]="editQuestion.question" style="width: 100%;"
+            value="{{QuestionValue}}" />
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="close12" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="updateQuestion2()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- edit question Modal end-->
+
+  <!-- edit options Modal -->
+  <!-- <div class="modal fade" id="editOptions" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Options</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" placeholder="Options" [(ngModel)]="editOptions.optionName" style="width: 80%;" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close3">Close</button>
+          <button type="button" class="btn btn-primary" (click)="updateOptions2()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- edit options end-->
+
+  <!-- add options modal  -->
+  <!-- <div class="modal fade" id="addOptions" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Options</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" placeholder="Options" [(ngModel)]="addOptions.optionName" style="width: 80%;" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close10">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addOptions2()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- add options end -->
+
+
+  <!-- delete question -->
+
+  <!-- <div class="modal fade" id="deleteQuestion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Question</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3>Are you sure you want to delete the Question?</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close7">Cancel</button>
+          <button type="button" class="btn btn-primary" (click)="deleteQuestion2()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- delete question end -->
+
+  <!-- delete category -->
+  <!-- <div class="modal fade" id="deleteCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Question</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3>Are you sure you want to delete the Category?</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close8">Cancel</button>
+          <button type="button" class="btn btn-primary" (click)="deleteCategory2()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- delete category end -->
+
+  <!-- edit category -->
+  <!-- <div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Category Name </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" placeholder="Category Name" [(ngModel)]="ediiCategoryName.categoryName"
+            style="width: 80%;" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="close9" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="editCategory2()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- edit category end -->
+<!-- </div> -->
+
+
+
+
+
+
+<!-- 
+  <div style="margin-left:200px;">
+  
+    {{DefaultFormId}}<br>
+    
+    {{DefaultFormName}}
+    
+    <div *ngFor="let cat of Categories;let i=index">
+    
+     {{i+1}}) {{cat.categoryName}}
+    
+      <div  *ngFor="let que of cat.questions;let p=index">
+    
+        {{p}}) {{que.question | json}}
+    
+        <div *ngFor="let opt of que.options;let k=index">
+    
+         {{k}})  {{opt.optionName}}
+    
+        </div>
+      </div>
+    </div>
+    </div> -->
+
+<!-- <p style="padding-left: 100px;">{{sample|json}}</p> -->
+<!-- <p style="padding-left: 100px;">{{sample[0]|json}}</p> -->
